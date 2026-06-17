@@ -1,1 +1,900 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Digital Sovereign — Master Skills. Command AI. Build Wealth.</title>
+    <meta name="description" content="The complete digital transformation system. 800+ pages. 20 skills. AI mastery. 12 income models. Foundation Grants. Limited promo: Only $1.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg: #0a0c10;
+            --bg2: #0f1119;
+            --bg3: #12141c;
+            --card: #161820;
+            --card2: #1b1e28;
+            --gold: #d4a843;
+            --gold2: #fde68a;
+            --gold3: #fef3c7;
+            --text: #f5f4f0;
+            --text2: #b0aea8;
+            --text3: #6e6c66;
+            --border: rgba(255,255,255,0.06);
+            --border2: rgba(255,255,255,0.10);
+            --border-gold: rgba(212,168,67,0.20);
+            --red: #ef4444;
+            --green: #22c55e;
+            --radius: 14px;
+            --radius-lg: 20px;
+            --shadow: 0 20px 50px rgba(0,0,0,0.4);
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', -apple-system, sans-serif;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+        .font-display { font-family: 'Playfair Display', serif; }
+        a { color: var(--gold); text-decoration: none; }
+        a:hover { color: var(--gold2); }
+        
+        /* NAV */
+        nav {
+            position: fixed; top:0; left:0; right:0; z-index:1000;
+            background: rgba(10,12,16,0.92);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 1.5rem;
+        }
+        .nav-inner {
+            max-width: 1100px; margin:0 auto;
+            display:flex; justify-content:space-between; align-items:center;
+            height: 68px;
+        }
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem; font-weight:700;
+            color: var(--text); text-decoration:none;
+            cursor: pointer;
+        }
+        .nav-links { display:flex; gap:1.4rem; align-items:center; flex-wrap:wrap; }
+        .nav-links a {
+            color: var(--text2); text-decoration:none;
+            font-size: 0.82rem; font-weight:500;
+            cursor: pointer; transition: color 0.2s;
+            white-space: nowrap;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+        .nav-cta {
+            background: linear-gradient(135deg, var(--gold), #a67c1e);
+            color:#0a0c10 !important; padding:9px 20px; border-radius:50px;
+            font-weight:700 !important; font-size:0.85rem !important;
+            text-decoration:none; cursor:pointer;
+            transition: all 0.3s;
+        }
+        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(212,168,67,0.3); }
+        
+        /* PAGE CONTAINER */
+        .page {
+            display: none;
+            padding-top: 68px;
+            min-height: 100vh;
+        }
+        .page.active { display: block; }
+        
+        /* HERO */
+        .hero {
+            padding: 100px 1.5rem 60px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(212,168,67,0.08);
+            border:1px solid var(--border-gold);
+            color: var(--gold); padding: 6px 18px;
+            border-radius: 50px; font-size:0.78rem;
+            letter-spacing:2.5px; text-transform:uppercase;
+            margin-bottom:1.5rem; font-weight:600;
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900; line-height:1.12;
+            margin-bottom: 1.2rem;
+        }
+        .hero h1 .gold {
+            background: linear-gradient(135deg, #fde68a, #d4a843, #a67c1e);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+            background-clip: text;
+        }
+        .hero-subtitle {
+            font-size: 1.08rem; color: var(--text2);
+            max-width: 540px; margin:0 auto 2rem;
+            line-height:1.8;
+        }
+        .price-box {
+            background: var(--card);
+            border:1px solid var(--border-gold);
+            border-radius: var(--radius-lg);
+            padding: 2.2rem 2.5rem;
+            display: inline-block; margin-bottom: 1.5rem;
+            box-shadow: 0 0 40px rgba(212,168,67,0.06);
+        }
+        .price-original {
+            text-decoration: line-through;
+            color: var(--text3); font-size: 1.4rem;
+            display: block;
+        }
+        .price-now {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem; font-weight: 900;
+            background: linear-gradient(135deg, var(--gold3), var(--gold), var(--gold));
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+            background-clip: text;
+            display: block; line-height:1;
+        }
+        .price-timer {
+            color: var(--red); font-weight:600;
+            font-size:0.88rem; margin-top:0.5rem;
+        }
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold), #a67c1e);
+            color:#0a0c10; padding: 17px 38px;
+            border-radius: 50px; font-weight:700;
+            font-size:1.08rem; text-decoration:none;
+            cursor: pointer; border: none;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 38px rgba(212,168,67,0.32);
+            color:#0a0c10;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border2);
+            color: var(--text);
+        }
+        .btn-outline:hover {
+            border-color: var(--border-gold);
+            background: rgba(212,168,67,0.04);
+            color: var(--text);
+        }
+        
+        /* FEATURES */
+        .features {
+            max-width: 900px; margin: 40px auto;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
+            gap: 0.8rem; padding: 0 1.5rem;
+        }
+        .feat {
+            background: var(--card);
+            border:1px solid var(--border);
+            border-radius: var(--radius); padding: 1.5rem;
+            text-align: center;
+        }
+        .feat-icon { font-size:1.8rem; margin-bottom:0.5rem; }
+        .feat h3 { font-size:0.95rem; margin-bottom:0.3rem; }
+        .feat p { font-size:0.82rem; color:var(--text2); }
+        
+        /* PAGE CARDS */
+        .pages-grid {
+            max-width: 1000px; margin: 40px auto;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+            gap: 1.2rem; padding: 0 1.5rem;
+        }
+        .page-card {
+            background: var(--card);
+            border:1px solid var(--border);
+            border-radius: var(--radius-lg); padding: 2rem;
+            cursor: pointer; transition: all 0.3s;
+            display: block; color: var(--text);
+        }
+        .page-card:hover {
+            border-color: var(--border-gold);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+        .page-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem; margin-bottom:0.4rem;
+        }
+        .page-card p { color: var(--text2); font-size:0.9rem; }
+        .page-card .arrow { color: var(--gold); float:right; font-size:1.4rem; }
+        
+        /* SECTION */
+        .section {
+            padding: 70px 1.5rem;
+            max-width: 900px; margin:0 auto;
+        }
+        .section-center { text-align: center; }
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.9rem; margin-bottom:0.8rem;
+        }
+        .section p {
+            color: var(--text2); line-height:1.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* CARDS */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+            gap: 1rem; margin-top: 2rem;
+        }
+        .card {
+            background: var(--card);
+            border:1px solid var(--border);
+            border-radius: var(--radius); padding: 1.8rem;
+            transition: all 0.3s;
+        }
+        .card:hover {
+            border-color: var(--border-gold);
+            transform: translateY(-4px);
+        }
+        .card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem; margin-bottom:0.5rem;
+        }
+        .card p { font-size:0.9rem; color:var(--text2); line-height:1.7; }
+        .card-icon { font-size:2rem; margin-bottom:0.8rem; display:block; }
+        
+        /* FORMS */
+        .form-group { margin-bottom: 1.2rem; text-align: left; }
+        .form-group label {
+            display: block; font-weight:600;
+            font-size: 0.9rem; margin-bottom:0.4rem;
+            color: var(--text);
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%; padding: 13px 16px;
+            background: var(--bg2);
+            border: 1px solid var(--border2);
+            border-radius: 10px;
+            color: var(--text);
+            font-size: 0.95rem;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.2s;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+        .form-box {
+            background: var(--card);
+            border:1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+        
+        /* TABLE */
+        .table-wrap {
+            overflow-x: auto; margin: 2rem 0;
+            border-radius: var(--radius);
+            border:1px solid var(--border);
+        }
+        table { width:100%; border-collapse:collapse; min-width:500px; }
+        th {
+            text-align:left; padding:1rem 1.2rem;
+            background: var(--card2);
+            font-size:0.75rem; font-weight:600;
+            letter-spacing:1.5px; text-transform:uppercase;
+            color: var(--gold); border-bottom:1px solid var(--border);
+        }
+        td {
+            padding:1rem 1.2rem;
+            border-bottom:1px solid var(--border);
+            font-size:0.9rem; color: var(--text2);
+        }
+        tr:hover td { background: rgba(212,168,67,0.02); color: var(--text); }
+        .amt { color: var(--gold2); font-weight:600; }
+        .total td { font-weight:700; background:rgba(212,168,67,0.04); color:var(--text); }
+        
+        /* FAQ */
+        .faq-item {
+            background: var(--card);
+            border:1px solid var(--border);
+            border-radius: var(--radius);
+            margin-bottom: 0.6rem;
+            overflow: hidden;
+        }
+        .faq-q {
+            width:100%; background:none; border:none;
+            padding:1.2rem 1.5rem; text-align:left;
+            cursor:pointer; font-weight:600;
+            font-size:0.95rem; color:var(--text);
+            display:flex; justify-content:space-between;
+            align-items:center;
+            font-family: 'Inter', sans-serif;
+        }
+        .faq-q span { font-size:1.4rem; color:var(--gold); transition:transform 0.3s; }
+        .faq-a {
+            max-height:0; overflow:hidden;
+            transition: max-height 0.4s ease;
+        }
+        .faq-a-inner {
+            padding:0 1.5rem 1.3rem;
+            color:var(--text2); line-height:1.8;
+            font-size:0.9rem;
+        }
+        .faq-item.open .faq-a { max-height:300px; }
+        .faq-item.open .faq-q span { transform:rotate(45deg); }
+        
+        /* TELEGRAM LINKS */
+        .tg-card {
+            background: var(--card);
+            border:1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 2rem; text-align: center;
+            transition: all 0.3s;
+        }
+        .tg-card:hover {
+            border-color: #2a9ef5;
+            transform: translateY(-4px);
+        }
+        .tg-card h3 { font-size:1.1rem; margin:0.8rem 0 0.4rem; }
+        .tg-card p { font-size:0.88rem; color:var(--text2); }
+        .tg-icon {
+            width: 56px; height: 56px;
+            background: linear-gradient(135deg, #2a9ef5, #1d7fc9);
+            border-radius: 50%; display: inline-flex;
+            align-items: center; justify-content: center;
+            font-size: 1.6rem; color: white;
+        }
+        .tg-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #2a9ef5, #1d7fc9);
+            color: white; padding: 12px 28px;
+            border-radius: 50px; font-weight:600;
+            text-decoration: none; margin-top:0.8rem;
+            transition: all 0.3s;
+        }
+        .tg-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(42,158,245,0.3);
+            color: white;
+        }
+        
+        /* SUCCESS MESSAGE */
+        .success-msg {
+            display: none;
+            background: rgba(34,197,94,0.1);
+            border: 1px solid rgba(34,197,94,0.3);
+            color: var(--green);
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+        
+        /* FOOTER */
+        footer {
+            border-top:1px solid var(--border);
+            padding: 2.5rem 1.5rem; text-align:center;
+        }
+        footer a {
+            color: var(--text2); text-decoration:none;
+            margin:0 0.8rem; font-size:0.85rem;
+            cursor: pointer;
+        }
+        footer a:hover { color: var(--gold); }
+        footer p { color: var(--text3); font-size:0.82rem; margin-top:1.2rem; }
+        
+        /* MOBILE */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.show {
+                display: flex; flex-direction: column;
+                position: absolute; top:68px; left:0; right:0;
+                background: rgba(10,12,16,0.98);
+                padding: 1.5rem; gap:1rem;
+                border-bottom:1px solid var(--border);
+            }
+            .nav-mobile-btn {
+                display: block !important;
+                background: none; border: none;
+                color: var(--text); font-size:1.8rem;
+                cursor: pointer;
+            }
+            .price-now { font-size:3.2rem; }
+            .hero { padding: 80px 1rem 50px; }
+            .form-box { padding: 1.5rem; }
+        }
+        @media (min-width: 769px) {
+            .nav-mobile-btn { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+    <div class="nav-inner">
+        <a class="nav-logo" onclick="showPage('home')">◆ The Digital Sovereign</a>
+        <button class="nav-mobile-btn" onclick="toggleMobileMenu()">☰</button>
+        <div class="nav-links" id="mobileNav">
+            <a onclick="showPage('home')" class="active" id="nav-home">Home</a>
+            <a onclick="showPage('book')" id="nav-book">Free Chapters</a>
+            <a onclick="showPage('foundation')" id="nav-foundation">Foundation Grants</a>
+            <a onclick="showPage('ambassadors')" id="nav-ambassadors">Ambassadors</a>
+            <a onclick="showPage('community')" id="nav-community">Community</a>
+            <a onclick="showPage('faq')" id="nav-faq">FAQ</a>
+            <a onclick="showPage('contact')" id="nav-contact">Contact</a>
+            <a class="nav-cta" onclick="showPage('home'); document.getElementById('buy-section').scrollIntoView({behavior:'smooth'});">Get It — $1</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ============================================
+PAGE 1: HOME
+============================================ -->
+<div class="page active" id="page-home">
+    
+    <div class="hero">
+        <div class="hero-badge">🚀 Limited Launch Promo</div>
+        <h1>
+            Master <span class="gold">20 Digital Skills.</span><br>
+            Command <span class="gold">AI.</span><br>
+            Build <span class="gold">Real Wealth.</span>
+        </h1>
+        <p class="hero-subtitle">
+            The complete 800+ page transformation system. Learn high-income digital skills from absolute zero. Build 12 independent income streams. Get paid Foundation Grants for every chapter you complete.
+        </p>
+        <div class="price-box" id="buy-section">
+            <span class="price-original">$197</span>
+            <span class="price-now">$1</span>
+            <div class="price-timer">⚡ Limited Launch Promo — Price Increases After First 500 Copies</div>
+        </div>
+        <br>
+        <a href="https://gumroad.com/l/digitalsov" class="btn" target="_blank">Get The Digital Sovereign Now — $1 →</a>
+        <p style="color:var(--text3); font-size:0.85rem; margin-top:1rem;">
+            Instant PDF download. 800+ pages. 30-day guarantee.<br>
+            Secure checkout via Gumroad.
+        </p>
+    </div>
+
+    <div class="features">
+        <div class="feat"><div class="feat-icon">📘</div><h3>800+ Pages</h3><p>Premium instruction</p></div>
+        <div class="feat"><div class="feat-icon">🎯</div><h3>20 Skills</h3><p>From absolute zero</p></div>
+        <div class="feat"><div class="feat-icon">🤖</div><h3>AI Mastery</h3><p>Command AI tools</p></div>
+        <div class="feat"><div class="feat-icon">💰</div><h3>$1,325 Grants</h3><p>Paid to complete</p></div>
+        <div class="feat"><div class="feat-icon">📈</div><h3>12 Income Models</h3><p>Multiple streams</p></div>
+        <div class="feat"><div class="feat-icon">🛡️</div><h3>30-Day Guarantee</h3><p>Full refund</p></div>
+    </div>
+
+    <div class="section section-center">
+        <h2>Explore the Platform</h2>
+        <p>Everything you need to transform, earn, and build digital sovereignty.</p>
+    </div>
+
+    <div class="pages-grid">
+        <div class="page-card" onclick="showPage('book')">
+            <h3>📖 Read Free Chapters <span class="arrow">→</span></h3>
+            <p>Start reading the first chapters completely free. No signup required. See the quality before you buy.</p>
+        </div>
+        <div class="page-card" onclick="showPage('foundation')">
+            <h3>💰 Foundation Grants <span class="arrow">→</span></h3>
+            <p>Submit your Practice Labs. Claim your cash grants. Get paid to complete every chapter.</p>
+        </div>
+        <div class="page-card" onclick="showPage('ambassadors')">
+            <h3>🤝 Ambassador Program <span class="arrow">→</span></h3>
+            <p>Earn 30% commissions. Join the movement. Get your unique tracking link and media kit.</p>
+        </div>
+        <div class="page-card" onclick="showPage('community')">
+            <h3>👥 Community <span class="arrow">→</span></h3>
+            <p>Join our Telegram channels. Connect with readers. Access the Premium Vault.</p>
+        </div>
+        <div class="page-card" onclick="showPage('faq')">
+            <h3>❓ FAQ <span class="arrow">→</span></h3>
+            <p>Got questions? Find answers about the book, grants, and Ambassador program.</p>
+        </div>
+        <div class="page-card" onclick="showPage('contact')">
+            <h3>📩 Contact <span class="arrow">→</span></h3>
+            <p>Need help? Reach out to our support team. We respond within 12 hours.</p>
+        </div>
+    </div>
+
+</div>
+
+<!-- ============================================
+PAGE 2: FREE CHAPTERS
+============================================ -->
+<div class="page" id="page-book">
+    <div class="section">
+        <h2>📖 Free Chapters</h2>
+        <p>Read the first chapters of The Digital Sovereign completely free. Experience the quality, depth, and transformation before you commit.</p>
+        
+        <div class="cards">
+            <div class="card">
+                <span class="card-icon">📘</span>
+                <h3>Chapter 1: The New Economic Reality</h3>
+                <p>Why the old economy is dead. The rise of the Digital Sovereign. The 2026 Technology Trinity. The skills that command premium compensation.</p>
+                <p style="margin-top:1rem;"><em>Full chapter available in the complete book.</em></p>
+            </div>
+            <div class="card">
+                <span class="card-icon">🧠</span>
+                <h3>Chapter 2: The Second Brain Architecture</h3>
+                <p>Build your AI-powered knowledge management system. Set up your digital command center. Organize your intellectual capital.</p>
+                <p style="margin-top:1rem;"><em>Full chapter available in the complete book.</em></p>
+            </div>
+            <div class="card">
+                <span class="card-icon">🚀</span>
+                <h3>Chapter 3: The Zero-to-Ship Protocol</h3>
+                <p>How to go from idea to launched digital asset in hours. The rapid execution framework. Your first project, shipped.</p>
+                <p style="margin-top:1rem;"><em>Full chapter available in the complete book.</em></p>
+            </div>
+        </div>
+
+        <div style="text-align:center; margin-top:3rem;">
+            <p style="font-size:1.1rem; font-weight:600;">Get all 20 chapters instantly.</p>
+            <a href="https://gumroad.com/l/digitalsov" class="btn" target="_blank">Get The Complete Book — $1 →</a>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================
+PAGE 3: FOUNDATION GRANTS
+============================================ -->
+<div class="page" id="page-foundation">
+    <div class="section">
+        <h2>💰 Foundation Grant System</h2>
+        <p>Complete chapters. Submit your Practice Labs. Receive real cash grants. The Foundation pays you to transform.</p>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr><th>Milestone</th><th>Chapters</th><th>Grant Amount</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Foundation Complete</td><td>1–3</td><td class="amt">$150</td></tr>
+                    <tr><td>Creator Quadrant</td><td>4–7</td><td class="amt">$275</td></tr>
+                    <tr><td>Builder Quadrant</td><td>8–10</td><td class="amt">$225</td></tr>
+                    <tr><td>Strategist Quadrant</td><td>11–13</td><td class="amt">$200</td></tr>
+                    <tr><td>Investor Quadrant</td><td>14–16</td><td class="amt">$175</td></tr>
+                    <tr><td>AI Amplification</td><td>17–19</td><td class="amt">$200</td></tr>
+                    <tr><td>Full Sovereignty</td><td>20</td><td class="amt">$100</td></tr>
+                    <tr class="total"><td><strong>Total</strong></td><td><strong>All 20 Chapters</strong></td><td class="amt"><strong>$1,325</strong></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p style="text-align:center; font-weight:600;">You invest $197. The Foundation pays you $1,325. Net profit: $1,128 plus permanent skills.</p>
+
+        <div class="form-box">
+            <h3 style="text-align:center; margin-bottom:1.5rem;">Submit Your Grant Application</h3>
+            <p style="text-align:center; color:var(--text2); margin-bottom:1.5rem; font-size:0.9rem;">
+                After purchasing the book and completing a chapter, submit your Practice Lab here. Grants are processed every Friday.
+            </p>
+            
+            <!-- Replace with your Google Form embed or use this HTML form -->
+            <form id="grantForm" onsubmit="submitGrant(event)">
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" id="grantName" required placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label>Email Address (for PayPal payment) *</label>
+                    <input type="email" id="grantEmail" required placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Chapter Completed *</label>
+                    <select id="grantChapter" required>
+                        <option value="">Select chapter...</option>
+                        <option value="1">Chapter 1</option><option value="2">Chapter 2</option>
+                        <option value="3">Chapter 3</option><option value="4">Chapter 4</option>
+                        <option value="5">Chapter 5</option>
+                        <option value="6-20">Chapters 6-20</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Proof of Completion (Describe your Practice Lab results) *</label>
+                    <textarea id="grantProof" rows="4" required placeholder="Describe what you built, learned, or created in this chapter's Practice Lab..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Book Purchase Receipt ID (from Gumroad) *</label>
+                    <input type="text" id="grantReceipt" required placeholder="Your Gumroad receipt number">
+                </div>
+                <button type="submit" class="btn" style="width:100%;">Submit Grant Application →</button>
+                <div class="success-msg" id="grantSuccess">✅ Your grant application has been submitted! We'll review it and process payment within 7 days.</div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================
+PAGE 4: AMBASSADOR PROGRAM
+============================================ -->
+<div class="page" id="page-ambassadors">
+    <div class="section">
+        <h2>🤝 Ambassador Program</h2>
+        <p>Share The Digital Sovereign with your audience. Earn generous commissions. Join the movement that's building digital sovereignty worldwide.</p>
+
+        <div class="cards">
+            <div class="card" style="text-align:center;">
+                <span class="card-icon">💵</span>
+                <h3 style="font-size:1.8rem;">30%</h3>
+                <p>Commission on every book sale through your link</p>
+            </div>
+            <div class="card" style="text-align:center;">
+                <span class="card-icon">🔄</span>
+                <h3 style="font-size:1.8rem;">10%</h3>
+                <p>On every Foundation Grant your referrals earn</p>
+            </div>
+            <div class="card" style="text-align:center;">
+                <span class="card-icon">♾️</span>
+                <h3 style="font-size:1.8rem;">Lifetime</h3>
+                <p>Tool commission share from your referrals</p>
+            </div>
+            <div class="card" style="text-align:center;">
+                <span class="card-icon">📅</span>
+                <h3 style="font-size:1.8rem;">Weekly</h3>
+                <p>Payouts every Friday via PayPal</p>
+            </div>
+        </div>
+
+        <div class="form-box">
+            <h3 style="text-align:center; margin-bottom:1.5rem;">Apply to Become an Ambassador</h3>
+            <p style="text-align:center; color:var(--text2); margin-bottom:1.5rem; font-size:0.9rem;">
+                Fill out the form below. We'll review your application and send your unique Ambassador link and media kit within 24 hours.
+            </p>
+            
+            <form id="ambassadorForm" onsubmit="submitAmbassador(event)">
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" id="ambName" required placeholder="Your full name">
+                </div>
+                <div class="form-group">
+                    <label>Email Address *</label>
+                    <input type="email" id="ambEmail" required placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Telegram Username</label>
+                    <input type="text" id="ambTelegram" placeholder="@yourusername">
+                </div>
+                <div class="form-group">
+                    <label>Your Platform / Audience *</label>
+                    <select id="ambPlatform" required>
+                        <option value="">Select your primary platform...</option>
+                        <option value="telegram">Telegram Channel/Group</option>
+                        <option value="twitter">X (Twitter)</option>
+                        <option value="linkedin">LinkedIn</option>
+                        <option value="instagram">Instagram</option>
+                        <option value="youtube">YouTube</option>
+                        <option value="tiktok">TikTok</option>
+                        <option value="blog">Blog / Website</option>
+                        <option value="email">Email List</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Audience Size (approximate) *</label>
+                    <input type="text" id="ambAudience" required placeholder="e.g., 5,000 followers, 2,000 subscribers">
+                </div>
+                <div class="form-group">
+                    <label>Why do you want to promote The Digital Sovereign? *</label>
+                    <textarea id="ambWhy" rows="3" required placeholder="Tell us why this book resonates with you and your audience..."></textarea>
+                </div>
+                <button type="submit" class="btn" style="width:100%;">Submit Ambassador Application →</button>
+                <div class="success-msg" id="ambSuccess">✅ Your Ambassador application has been received! We'll review it and send your unique link and media kit within 24 hours.</div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================
+PAGE 5: COMMUNITY
+============================================ -->
+<div class="page" id="page-community">
+    <div class="section section-center">
+        <h2>👥 Join the Community</h2>
+        <p>Connect with fellow readers, access premium content, and get support on your sovereignty journey.</p>
+
+        <div class="cards">
+            <div class="tg-card">
+                <div class="tg-icon">📢</div>
+                <h3>Main Channel</h3>
+                <p>Free chapters, updates, and announcements. Start here.</p>
+                <a href="https://t.me/DigitalSovereign" class="tg-btn" target="_blank">Join Channel →</a>
+            </div>
+            <div class="tg-card">
+                <div class="tg-icon">💬</div>
+                <h3>Discussion Group</h3>
+                <p>Share your Practice Labs. Get feedback. Connect with readers.</p>
+                <a href="https://t.me/SovereignChat" class="tg-btn" target="_blank">Join Group →</a>
+            </div>
+            <div class="tg-card">
+                <div class="tg-icon">💎</div>
+                <h3>Premium Vault</h3>
+                <p>For book owners only. Submit grants. Access exclusive content.</p>
+                <a href="https://t.me/SovereignVault" class="tg-btn" target="_blank">Access Vault →</a>
+            </div>
+        </div>
+
+        <p style="margin-top:2rem; color:var(--text3); font-size:0.9rem;">
+            📩 For Vault access, forward your purchase receipt to <strong>@SovereignConcierge</strong> on Telegram.
+        </p>
+    </div>
+</div>
+
+<!-- ============================================
+PAGE 6: FAQ
+============================================ -->
+<div class="page" id="page-faq">
+    <div class="section">
+        <h2>❓ Frequently Asked Questions</h2>
+        <p>Everything you need to know about The Digital Sovereign.</p>
+
+        <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">Is this book suitable for complete beginners? <span>+</span></button>
+            <div class="faq-a"><div class="faq-a-inner">Absolutely. Every single skill is taught from absolute zero. No prerequisites. No assumed knowledge. No technical background required. If you can read and follow instructions, you can complete this book and acquire every skill inside.</div></div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">How does the Foundation Grant System work? <span>+</span></button>
+            <div class="faq-a"><div class="faq-a-inner">When you purchase the book, you unlock access to the Premium Vault. Each chapter has a grant submission post. Complete the Practice Lab, submit proof, and verify tool activation. Every Friday, grants are processed and paid via PayPal. Total grants available: $1,325.</div></div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">Why is the book only $1 right now? <span>+</span></button>
+            <div class="faq-a"><div class="faq-a-inner">This is a limited launch promotion to build our reader community. The regular price is $197. We're offering the first 500 copies at $1 to remove all barriers and get the book into the hands of people who will take action and share their results. The price will increase as we hit milestones.</div></div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">How fast can I start earning income? <span>+</span></button>
+            <div class="faq-a"><div class="faq-a-inner">Foundation Grants begin paying within your first week. Readers report first freelance income within 2-4 weeks of starting the Creator Quadrant. Tool affiliate commissions begin immediately upon activation. Full income streams typically develop by Month 2-3 of consistent implementation.</div></div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">What if I don't find it valuable? <span>+</span></button>
+            <div class="faq-a"><div class="faq-a-inner">You're protected by the 30-Day Sovereignty Guarantee. Work through the first five chapters. Complete the Practice Labs. If you don't feel significantly more skilled and capable, email us for a full refund. No questions asked. The risk is entirely ours.</div></div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">Is this a physical book or digital? <span>+</span></button>
+            <div class="faq-a"><div class="faq-a-inner">The Digital Sovereign is delivered as an instant-download PDF, optimized for reading on any device—laptop, tablet, or phone. A physical paperback edition will be available via Amazon at a later date.</div></div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">How do I join the Ambassador Program? <span>+</span></button>
+            <div class="faq-a"><div class="faq-a-inner">Visit the Ambassadors page on this site and fill out the application form. You'll receive your unique tracking link, media kit, and onboarding materials within 24 hours. No upfront cost. Promote authentically. Earn weekly.</div></div>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================
+PAGE 7: CONTACT
+============================================ -->
+<div class="page" id="page-contact">
+    <div class="section">
+        <h2>📩 Contact Us</h2>
+        <p>Have questions or need support? We're here to help.</p>
+
+        <div class="form-box">
+            <form id="contactForm" onsubmit="submitContact(event)">
+                <div class="form-group">
+                    <label>Name *</label>
+                    <input type="text" id="contactName" required placeholder="Your name">
+                </div>
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" id="contactEmail" required placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Subject *</label>
+                    <select id="contactSubject" required>
+                        <option value="">Select topic...</option>
+                        <option value="purchase">Purchase / Access Issue</option>
+                        <option value="grant">Foundation Grant Question</option>
+                        <option value="ambassador">Ambassador Program</option>
+                        <option value="community">Community / Telegram</option>
+                        <option value="refund">Refund Request</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Message *</label>
+                    <textarea id="contactMessage" rows="5" required placeholder="How can we help you?"></textarea>
+                </div>
+                <button type="submit" class="btn" style="width:100%;">Send Message →</button>
+                <div class="success-msg" id="contactSuccess">✅ Your message has been sent! We'll respond within 12 hours.</div>
+            </form>
+        </div>
+
+        <div style="text-align:center; margin-top:2rem;">
+            <p style="color:var(--text2);">
+                📩 Direct support on Telegram: <strong>@SovereignConcierge</strong><br>
+                📧 Email: <strong>support@digitalsov.com</strong>
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div>
+        <a onclick="showPage('home')">Home</a>
+        <a onclick="showPage('book')">Free Chapters</a>
+        <a onclick="showPage('foundation')">Foundation Grants</a>
+        <a onclick="showPage('ambassadors')">Ambassadors</a>
+        <a onclick="showPage('community')">Community</a>
+        <a onclick="showPage('faq')">FAQ</a>
+        <a onclick="showPage('contact')">Contact</a>
+    </div>
+    <p>© 2026 The Digital Sovereign Foundation. All rights reserved.</p>
+</footer>
+
+<script>
+    // PAGE SWITCHING
+    function showPage(pageName) {
+        // Hide all pages
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        // Show selected page
+        const target = document.getElementById('page-' + pageName);
+        if (target) target.classList.add('active');
+        // Update nav active states
+        document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+        const navLink = document.getElementById('nav-' + pageName);
+        if (navLink) navLink.classList.add('active');
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Close mobile menu
+        document.getElementById('mobileNav').classList.remove('show');
+    }
+
+    // MOBILE MENU
+    function toggleMobileMenu() {
+        document.getElementById('mobileNav').classList.toggle('show');
+    }
+
+    // FAQ TOGGLE
+    function toggleFaq(btn) {
+        btn.parentElement.classList.toggle('open');
+    }
+
+    // FORM SUBMISSIONS
+    function submitGrant(e) {
+        e.preventDefault();
+        document.getElementById('grantSuccess').style.display = 'block';
+        document.getElementById('grantForm').reset();
+        setTimeout(() => {
+            document.getElementById('grantSuccess').style.display = 'none';
+        }, 5000);
+    }
+
+    function submitAmbassador(e) {
+        e.preventDefault();
+        document.getElementById('ambSuccess').style.display = 'block';
+        document.getElementById('ambassadorForm').reset();
+        setTimeout(() => {
+            document.getElementById('ambSuccess').style.display = 'none';
+        }, 5000);
+    }
+
+    function submitContact(e) {
+        e.preventDefault();
+        document.getElementById('contactSuccess').style.display = 'block';
+        document.getElementById('contactForm').reset();
+        setTimeout(() => {
+            document.getElementById('contactSuccess').style.display = 'none';
+        }, 5000);
+    }
+</script>
+
+</body>
+</html>
