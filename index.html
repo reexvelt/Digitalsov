@@ -3,506 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Digital Sovereign</title>
+    <title>The Digital Sovereign | Complete Platform</title>
+    <meta name="description" content="Complete digital skills platform. Live book reader. Reader portal. Ambassador dashboard. Admin panel.">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --void: #08080c;
-            --abyss: #0c0c14;
-            --surface: #111118;
-            --elevated: #161622;
-            --glass-bg: rgba(18,18,30,0.55);
-            --glass-border: rgba(255,255,255,0.06);
-            --glass-border-strong: rgba(255,255,255,0.10);
-            --glass-highlight: rgba(255,255,255,0.03);
-            --accent-1: #6366f1;
-            --accent-2: #818cf8;
-            --accent-3: #4f46e5;
-            --accent-glow: rgba(99,102,241,0.4);
-            --cyan: #22d3ee;
-            --cyan-glow: rgba(34,211,238,0.5);
-            --text-primary: #f8f8fc;
-            --text-secondary: #a0a0b0;
-            --text-tertiary: #5c5c6e;
-            --radius-sm: 14px;
-            --radius-md: 22px;
-            --radius-lg: 32px;
-            --radius-xl: 48px;
-            --font-display: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
-            --font-body: 'Inter', sans-serif;
-            --transition-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-            --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+            --void:#08080c; --abyss:#0c0c14; --surface:#111118; --elevated:#161622;
+            --glass:rgba(18,18,30,0.55); --glass-border:rgba(255,255,255,0.06); --glass-border-strong:rgba(255,255,255,0.10);
+            --accent-1:#6366f1; --accent-2:#818cf8; --accent-3:#4f46e5; --accent-glow:rgba(99,102,241,0.4);
+            --cyan:#22d3ee; --cyan-glow:rgba(34,211,238,0.5);
+            --text:#f8f8fc; --text2:#a0a0b0; --text3:#5c5c6e;
+            --radius-sm:14px; --radius-md:22px; --radius-lg:32px; --radius-xl:48px;
+            --font-display:'Space Grotesk','Plus Jakarta Sans',sans-serif;
+            --font-body:'Inter',sans-serif;
+            --transition-spring:cubic-bezier(0.34,1.56,0.64,1);
+            --transition-smooth:cubic-bezier(0.4,0,0.2,1);
         }
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:var(--void);color:var(--text);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;cursor:none;}
+        h1,h2,h3{font-family:var(--font-display);}
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        .cursor-dot{width:6px;height:6px;background:#fff;border-radius:50%;position:fixed;z-index:10000;pointer-events:none;mix-blend-mode:difference;transition:transform 0.05s ease;}
+        .cursor-ring{width:48px;height:48px;border:1.5px solid rgba(255,255,255,0.25);border-radius:50%;position:fixed;z-index:9999;pointer-events:none;transition:all 0.18s ease;}
+        .cursor-ring.hover{width:80px;height:80px;border-color:var(--accent-2);background:rgba(99,102,241,0.08);}
 
-        body {
-            background: var(--void);
-            color: var(--text-primary);
-            font-family: var(--font-body);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
-            cursor: none;
-        }
+        .universe{position:fixed;inset:0;pointer-events:none;z-index:0;}
+        .orb{position:absolute;border-radius:50%;filter:blur(140px);opacity:0.04;}
+        .orb-1{width:900px;height:900px;background:var(--accent-1);top:-30%;right:-20%;animation:orbDrift 24s ease-in-out infinite;}
+        .orb-2{width:600px;height:600px;background:var(--cyan);bottom:-20%;left:-10%;animation:orbDrift 28s ease-in-out infinite reverse;opacity:0.03;}
+        .orb-3{width:400px;height:400px;background:#fff;top:50%;left:50%;transform:translate(-50%,-50%);animation:orbPulse 10s ease-in-out infinite;opacity:0.015;}
+        @keyframes orbDrift{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(70px,-90px) scale(1.1);}66%{transform:translate(-50px,60px) scale(0.9);}}
+        @keyframes orbPulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:0.015;}50%{transform:translate(-50%,-50%) scale(1.5);opacity:0.04;}}
+        .grid-mesh{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.012) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.012) 1px,transparent 1px);background-size:100px 100px;mask-image:radial-gradient(ellipse at center,black 15%,transparent 75%);}
+        .particles{position:absolute;inset:0;}
+        .particle{position:absolute;width:1px;height:1px;background:#fff;border-radius:50%;animation:particleFloat 10s ease-in-out infinite;}
+        @keyframes particleFloat{0%,100%{transform:translate(0,0);opacity:0;}20%{opacity:0.6;}50%{opacity:0.2;}80%{opacity:0.5;}}
 
-        /* CUSTOM CURSOR */
-        .cursor-dot {
-            width: 6px; height: 6px;
-            background: #fff;
-            border-radius: 50%;
-            position: fixed; z-index: 10000;
-            pointer-events: none;
-            mix-blend-mode: difference;
-            transition: transform 0.05s ease;
-        }
-        .cursor-ring {
-            width: 48px; height: 48px;
-            border: 1.5px solid rgba(255,255,255,0.25);
-            border-radius: 50%;
-            position: fixed; z-index: 9999;
-            pointer-events: none;
-            transition: all 0.18s ease;
-        }
-        .cursor-ring.hover { width: 80px; height: 80px; border-color: var(--accent-2); background: rgba(99,102,241,0.08); }
+        .nav{position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:100;width:calc(100% - 36px);max-width:860px;background:var(--glass);backdrop-filter:blur(40px) saturate(200%);-webkit-backdrop-filter:blur(40px) saturate(200%);border:1px solid var(--glass-border);border-radius:var(--radius-xl);padding:10px 18px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 8px 40px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,255,255,0.04);transition:all 0.5s var(--transition-smooth);}
+        .nav.scrolled{background:rgba(14,14,24,0.85);border-color:var(--glass-border-strong);box-shadow:0 12px 60px rgba(0,0,0,0.7);}
+        .nav-brand{display:flex;align-items:center;gap:10px;cursor:pointer;color:var(--text);text-decoration:none;}
+        .nav-brand-symbol{width:34px;height:34px;background:linear-gradient(135deg,var(--accent-1),var(--accent-3));border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;color:#fff;box-shadow:0 0 24px var(--accent-glow);}
+        .nav-brand-text{font-family:var(--font-display);font-weight:600;font-size:0.95rem;letter-spacing:-0.2px;}
+        .nav-links{display:flex;gap:2px;align-items:center;}
+        .nav-link{padding:9px 16px;border-radius:50px;font-size:0.78rem;font-weight:500;cursor:pointer;color:var(--text2);background:none;border:none;font-family:var(--font-body);transition:all 0.3s ease;white-space:nowrap;}
+        .nav-link:hover{color:#fff;background:rgba(255,255,255,0.03);}
+        .nav-link.active{color:#fff;background:rgba(99,102,241,0.15);}
+        .nav-cta{padding:9px 20px;border-radius:50px;font-weight:600;font-size:0.8rem;cursor:pointer;border:none;font-family:var(--font-body);background:linear-gradient(135deg,var(--accent-1),var(--accent-3));color:#fff;white-space:nowrap;box-shadow:0 4px 20px var(--accent-glow);transition:all 0.3s ease;}
+        .nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px var(--accent-glow);}
+        .nav-mob{display:none;background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer;}
 
-        /* AMBIENT UNIVERSE */
-        .universe { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
-        .orb { position: absolute; border-radius: 50%; filter: blur(140px); opacity: 0.04; }
-        .orb-1 { width: 900px; height: 900px; background: var(--accent-1); top: -30%; right: -20%; animation: orbDrift 24s ease-in-out infinite; }
-        .orb-2 { width: 600px; height: 600px; background: var(--cyan); bottom: -20%; left: -10%; animation: orbDrift 28s ease-in-out infinite reverse; opacity: 0.03; }
-        .orb-3 { width: 400px; height: 400px; background: #fff; top: 50%; left: 50%; transform: translate(-50%,-50%); animation: orbPulse 10s ease-in-out infinite; opacity: 0.015; }
-        @keyframes orbDrift { 0%,100%{transform:translate(0,0) scale(1);} 33%{transform:translate(70px,-90px) scale(1.1);} 66%{transform:translate(-50px,60px) scale(0.9);} }
-        @keyframes orbPulse { 0%,100%{transform:translate(-50%,-50%) scale(1); opacity:0.015;} 50%{transform:translate(-50%,-50%) scale(1.5); opacity:0.04;} }
+        .page{display:none;position:relative;z-index:1;padding-top:120px;min-height:100vh;}
+        .page.active{display:block;}
 
-        .grid-mesh {
-            position: absolute; inset: 0;
-            background-image: 
-                linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
-            background-size: 100px 100px;
-            mask-image: radial-gradient(ellipse at center, black 15%, transparent 75%);
-        }
-        .particles { position: absolute; inset: 0; }
-        .particle {
-            position: absolute; width: 1px; height: 1px;
-            background: #fff; border-radius: 50%;
-            animation: particleFloat 10s ease-in-out infinite;
-        }
-        @keyframes particleFloat {
-            0%,100%{transform:translate(0,0); opacity:0;}
-            20%{opacity:0.6;}
-            50%{opacity:0.2;}
-            80%{opacity:0.5;}
-        }
+        .hero{text-align:center;max-width:720px;margin:0 auto;padding:40px 20px 60px;position:relative;}
+        .hero-glow{position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(99,102,241,0.08) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;animation:orbPulse 8s ease-in-out infinite;}
+        .hero-chip{display:inline-flex;align-items:center;gap:7px;background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.2);padding:7px 18px;border-radius:50px;font-size:0.72rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--accent-2);margin-bottom:24px;backdrop-filter:blur(10px);}
+        .hero-chip-dot{width:6px;height:6px;background:var(--accent-2);border-radius:50%;animation:dotPulse 2s ease-in-out infinite;}
+        @keyframes dotPulse{0%,100%{opacity:1;box-shadow:0 0 10px var(--accent-2);}50%{opacity:0.3;box-shadow:0 0 2px var(--accent-2);}}
+        .hero h1{font-size:clamp(2.6rem,6.5vw,4.5rem);font-weight:700;line-height:1.08;letter-spacing:-2px;margin-bottom:20px;position:relative;z-index:1;}
+        .hero h1 .line{display:block;}
+        .hero h1 .grad{background:linear-gradient(135deg,#fff 0%,var(--accent-2) 40%,var(--cyan) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+        .hero-desc{font-size:1.1rem;color:var(--text2);max-width:500px;margin:0 auto 32px;line-height:1.7;font-weight:400;position:relative;z-index:1;}
+        .hero-buttons{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;}
+        .btn{display:inline-flex;align-items:center;gap:8px;padding:15px 30px;border-radius:50px;font-weight:600;font-size:0.95rem;cursor:pointer;border:none;font-family:var(--font-body);text-decoration:none;transition:all 0.4s var(--transition-spring);position:relative;overflow:hidden;}
+        .btn-primary{background:linear-gradient(135deg,var(--accent-1),var(--accent-3));color:#fff;box-shadow:0 6px 28px var(--accent-glow);}
+        .btn-primary:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 14px 44px var(--accent-glow);}
+        .btn-glass{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:#fff;backdrop-filter:blur(10px);}
+        .btn-glass:hover{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.2);transform:translateY(-4px);}
+        .btn-sm{padding:8px 16px;font-size:0.78rem;}
+        .btn-green{background:#10b981;color:#fff;}
+        .btn-full{width:100%;}
 
-        /* NAVIGATION — FLOATING GLASS ISLAND */
-        .nav-island {
-            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
-            z-index: 100; width: calc(100% - 36px); max-width: 860px;
-            background: var(--glass-bg);
-            backdrop-filter: blur(40px) saturate(200%);
-            -webkit-backdrop-filter: blur(40px) saturate(200%);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--radius-xl);
-            padding: 10px 18px;
-            display: flex; align-items: center; justify-content: space-between;
-            box-shadow: 0 8px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.04);
-            transition: all 0.5s var(--transition-smooth);
-        }
-        .nav-island.scrolled {
-            background: rgba(14,14,24,0.85);
-            border-color: var(--glass-border-strong);
-            box-shadow: 0 12px 60px rgba(0,0,0,0.7);
-        }
-        .nav-brand {
-            display: flex; align-items: center; gap: 10px;
-            cursor: pointer; color: var(--text-primary);
-            text-decoration: none;
-        }
-        .nav-brand-symbol {
-            width: 34px; height: 34px;
-            background: linear-gradient(135deg, var(--accent-1), var(--accent-3));
-            border-radius: 10px;
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 700; font-size: 15px;
-            color: #fff;
-            box-shadow: 0 0 24px var(--accent-glow);
-        }
-        .nav-brand-text {
-            font-family: var(--font-display);
-            font-weight: 600;
-            font-size: 0.95rem;
-            letter-spacing: -0.2px;
-        }
-        .nav-links { display: flex; gap: 2px; align-items: center; }
-        .nav-link {
-            padding: 9px 16px; border-radius: 50px;
-            font-size: 0.78rem; font-weight: 500;
-            cursor: pointer; color: var(--text-secondary);
-            background: none; border: none;
-            font-family: var(--font-body);
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-        .nav-link:hover { color: #fff; background: var(--glass-highlight); }
-        .nav-link.active { color: #fff; background: rgba(99,102,241,0.15); }
-        .nav-cta {
-            padding: 9px 20px; border-radius: 50px;
-            font-weight: 600; font-size: 0.8rem;
-            cursor: pointer; border: none;
-            font-family: var(--font-body);
-            background: linear-gradient(135deg, var(--accent-1), var(--accent-3));
-            color: #fff; white-space: nowrap;
-            box-shadow: 0 4px 20px var(--accent-glow);
-            transition: all 0.3s ease;
-        }
-        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px var(--accent-glow); }
-        .nav-mob { display: none; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
+        .stats-row{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;max-width:750px;margin:40px auto;padding:0 16px;}
+        .stat-pill{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:50px;padding:13px 22px;text-align:center;transition:all 0.4s ease;}
+        .stat-pill:hover{border-color:var(--glass-border-strong);background:rgba(20,20,34,0.7);transform:translateY(-2px);}
+        .stat-val{font-family:var(--font-display);font-size:1.5rem;font-weight:700;background:linear-gradient(180deg,#fff,var(--accent-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+        .stat-lbl{font-size:0.68rem;color:var(--text3);letter-spacing:0.5px;text-transform:uppercase;}
 
-        /* PAGES */
-        .page { display: none; position: relative; z-index: 1; padding-top: 120px; min-height: 100vh; }
-        .page.active { display: block; }
+        .portal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;max-width:880px;margin:0 auto 50px;padding:0 16px;}
+        .portal-card{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:var(--radius-lg);padding:28px;cursor:pointer;transition:all 0.5s var(--transition-spring);text-decoration:none;color:var(--text);position:relative;overflow:hidden;}
+        .portal-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);opacity:0;transition:opacity 0.5s ease;}
+        .portal-card::after{content:'';position:absolute;inset:-1px;border-radius:var(--radius-lg);padding:1px;background:linear-gradient(135deg,rgba(99,102,241,0.3),transparent,rgba(34,211,238,0.3));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity 0.5s ease;}
+        .portal-card:hover{transform:translateY(-8px) scale(1.02);border-color:var(--glass-border-strong);box-shadow:0 24px 80px rgba(0,0,0,0.6);}
+        .portal-card:hover::before,.portal-card:hover::after{opacity:1;}
+        .portal-card-icon{font-size:2.2rem;margin-bottom:14px;display:block;}
+        .portal-card h3{font-size:1.15rem;font-weight:600;margin-bottom:5px;letter-spacing:-0.3px;}
+        .portal-card p{font-size:0.85rem;color:var(--text2);line-height:1.5;}
+        .portal-arrow{position:absolute;top:22px;right:22px;color:var(--text3);font-size:1.2rem;transition:all 0.4s ease;}
+        .portal-card:hover .portal-arrow{color:var(--accent-2);right:16px;}
 
-        /* HERO */
-        .hero {
-            text-align: center;
-            max-width: 720px; margin: 0 auto;
-            padding: 40px 20px 60px;
-            position: relative;
-        }
-        .hero-glow {
-            position: absolute;
-            width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%);
-            top: 50%; left: 50%; transform: translate(-50%,-50%);
-            pointer-events: none;
-            animation: orbPulse 8s ease-in-out infinite;
-        }
-        .hero-chip {
-            display: inline-flex; align-items: center; gap: 7px;
-            background: rgba(99,102,241,0.08);
-            border: 1px solid rgba(99,102,241,0.2);
-            padding: 7px 18px; border-radius: 50px;
-            font-size: 0.72rem; font-weight: 600;
-            letter-spacing: 2px; text-transform: uppercase;
-            color: var(--accent-2); margin-bottom: 24px;
-            backdrop-filter: blur(10px);
-        }
-        .hero-chip-dot {
-            width: 6px; height: 6px;
-            background: var(--accent-2);
-            border-radius: 50%;
-            animation: dotPulse 2s ease-in-out infinite;
-        }
-        @keyframes dotPulse { 0%,100%{opacity:1;box-shadow:0 0 10px var(--accent-2);} 50%{opacity:0.3;box-shadow:0 0 2px var(--accent-2);} }
-        .hero h1 {
-            font-family: var(--font-display);
-            font-size: clamp(2.6rem, 6.5vw, 4.5rem);
-            font-weight: 700; line-height: 1.08;
-            letter-spacing: -2px; margin-bottom: 20px;
-            position: relative; z-index: 1;
-        }
-        .hero h1 .line {
-            display: block;
-        }
-        .hero h1 .grad {
-            background: linear-gradient(135deg, #fff 0%, var(--accent-2) 40%, var(--cyan) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .hero-desc {
-            font-size: 1.1rem; color: var(--text-secondary);
-            max-width: 500px; margin: 0 auto 32px;
-            line-height: 1.7; font-weight: 400;
-            position: relative; z-index: 1;
-        }
-        .hero-buttons { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
-        .btn {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 15px 30px; border-radius: 50px;
-            font-weight: 600; font-size: 0.95rem;
-            cursor: pointer; border: none;
-            font-family: var(--font-body);
-            text-decoration: none;
-            transition: all 0.4s var(--transition-spring);
-            position: relative; overflow: hidden;
-        }
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent-1), var(--accent-3));
-            color: #fff;
-            box-shadow: 0 6px 28px var(--accent-glow);
-        }
-        .btn-primary:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 14px 44px var(--accent-glow); }
-        .btn-glass {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: #fff;
-            backdrop-filter: blur(10px);
-        }
-        .btn-glass:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); transform: translateY(-4px); }
+        .pricing-island{display:inline-block;background:var(--glass);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid var(--glass-border-strong);border-radius:var(--radius-xl);padding:32px 40px;text-align:center;box-shadow:0 16px 60px rgba(0,0,0,0.5);position:relative;overflow:hidden;}
+        .pricing-island::before{content:'';position:absolute;top:0;left:20%;right:20%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);}
+        .price-old{text-decoration:line-through;color:var(--text3);font-size:1.3rem;display:block;}
+        .price-new{font-family:var(--font-display);font-size:5rem;font-weight:700;background:linear-gradient(180deg,#fff 0%,var(--accent-2) 60%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block;line-height:1;letter-spacing:-2px;}
+        .price-tag{color:var(--cyan);font-weight:600;font-size:0.82rem;letter-spacing:0.5px;}
 
-        /* STATS ROW */
-        .stats-row {
-            display: flex; justify-content: center; gap: 8px;
-            flex-wrap: wrap; max-width: 750px; margin: 40px auto;
-            padding: 0 16px;
-        }
-        .stat-pill {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 50px;
-            padding: 13px 22px; text-align: center;
-            transition: all 0.4s ease;
-        }
-        .stat-pill:hover { border-color: var(--glass-border-strong); background: rgba(20,20,34,0.7); transform: translateY(-2px); }
-        .stat-val {
-            font-family: var(--font-display);
-            font-size: 1.5rem; font-weight: 700;
-            background: linear-gradient(180deg, #fff, var(--accent-2));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .stat-lbl { font-size: 0.68rem; color: var(--text-tertiary); letter-spacing: 0.5px; text-transform: uppercase; }
+        .sec{max-width:820px;margin:0 auto;padding:50px 18px;}
+        .sec-center{text-align:center;}
+        .sec-label{display:inline-block;font-size:0.7rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--accent-2);margin-bottom:8px;}
+        .sec h2{font-size:2rem;font-weight:700;letter-spacing:-0.8px;margin-bottom:8px;}
+        .sec p{color:var(--text2);line-height:1.7;margin-bottom:18px;}
 
-        /* PORTAL CARDS */
-        .portal-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 14px; max-width: 880px; margin: 0 auto 50px;
-            padding: 0 16px;
-        }
-        .portal-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--radius-lg);
-            padding: 28px; cursor: pointer;
-            transition: all 0.5s var(--transition-spring);
-            text-decoration: none; color: var(--text-primary);
-            position: relative; overflow: hidden;
-        }
-        .portal-card::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
-            opacity: 0; transition: opacity 0.5s ease;
-        }
-        .portal-card::after {
-            content: ''; position: absolute; inset: -1px; border-radius: var(--radius-lg);
-            padding: 1px;
-            background: linear-gradient(135deg, rgba(99,102,241,0.3), transparent, rgba(34,211,238,0.3));
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor; mask-composite: exclude;
-            opacity: 0; transition: opacity 0.5s ease;
-        }
-        .portal-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            border-color: var(--glass-border-strong);
-            box-shadow: 0 24px 80px rgba(0,0,0,0.6);
-        }
-        .portal-card:hover::before, .portal-card:hover::after { opacity: 1; }
-        .portal-card-icon { font-size: 2.2rem; margin-bottom: 14px; display: block; }
-        .portal-card h3 {
-            font-family: var(--font-display);
-            font-size: 1.15rem; font-weight: 600;
-            margin-bottom: 5px; letter-spacing: -0.3px;
-        }
-        .portal-card p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; }
-        .portal-arrow {
-            position: absolute; top: 22px; right: 22px;
-            color: var(--text-tertiary); font-size: 1.2rem;
-            transition: all 0.4s ease;
-        }
-        .portal-card:hover .portal-arrow { color: var(--accent-2); right: 16px; }
+        .glass-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:20px;}
+        .glass-card{background:var(--glass);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);border:1px solid var(--glass-border);border-radius:var(--radius-md);padding:22px;transition:all 0.4s ease;text-align:center;}
+        .glass-card:hover{border-color:var(--glass-border-strong);transform:translateY(-5px);box-shadow:0 16px 48px rgba(0,0,0,0.5);}
+        .glass-card h3{font-size:1rem;margin-bottom:4px;}
+        .glass-card p{font-size:0.82rem;color:var(--text2);}
 
-        /* PRICING */
-        .pricing-island {
-            display: inline-block;
-            background: var(--glass-bg);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border: 1px solid var(--glass-border-strong);
-            border-radius: var(--radius-xl);
-            padding: 32px 40px; text-align: center;
-            box-shadow: 0 16px 60px rgba(0,0,0,0.5);
-            position: relative; overflow: hidden;
-        }
-        .pricing-island::before {
-            content: ''; position: absolute; top: 0; left: 20%; right: 20%; height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-        }
-        .price-old { text-decoration: line-through; color: var(--text-tertiary); font-size: 1.3rem; display: block; }
-        .price-new {
-            font-family: var(--font-display);
-            font-size: 5rem; font-weight: 700;
-            background: linear-gradient(180deg, #fff 0%, var(--accent-2) 60%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: block; line-height: 1; letter-spacing: -2px;
-        }
-        .price-tag { color: var(--cyan); font-weight: 600; font-size: 0.82rem; letter-spacing: 0.5px; }
+        .tbl-wrap{overflow-x:auto;margin:18px 0;}
+        .tbl-glass{width:100%;border-collapse:collapse;background:var(--glass);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);border:1px solid var(--glass-border);border-radius:var(--radius-md);overflow:hidden;min-width:500px;}
+        .tbl-glass th{text-align:left;padding:12px 16px;font-size:0.7rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent-2);border-bottom:1px solid var(--glass-border);background:rgba(255,255,255,0.02);}
+        .tbl-glass td{padding:12px 16px;border-bottom:1px solid var(--glass-border);font-size:0.85rem;color:var(--text2);}
+        .tbl-glass tr:hover td{background:rgba(255,255,255,0.02);color:#fff;}
+        .amt{color:#4ade80;font-weight:600;}
+        .pending{color:#fbbf24;font-weight:600;}
 
-        /* SECTIONS */
-        .sec {
-            max-width: 820px; margin: 0 auto; padding: 50px 18px;
-        }
-        .sec-center { text-align: center; }
-        .sec-label {
-            display: inline-block; font-size: 0.7rem; font-weight: 600;
-            letter-spacing: 3px; text-transform: uppercase;
-            color: var(--accent-2); margin-bottom: 8px;
-        }
-        .sec h2 {
-            font-family: var(--font-display);
-            font-size: 2rem; font-weight: 700;
-            letter-spacing: -0.8px; margin-bottom: 8px;
-        }
-        .sec p { color: var(--text-secondary); line-height: 1.7; margin-bottom: 18px; }
+        .form-glass{background:var(--glass);backdrop-filter:blur(25px);-webkit-backdrop-filter:blur(25px);border:1px solid var(--glass-border-strong);border-radius:var(--radius-lg);padding:28px;max-width:520px;margin:18px auto;box-shadow:0 12px 40px rgba(0,0,0,0.5);}
+        .form-glass h3{text-align:center;margin-bottom:16px;font-size:1.2rem;}
+        .fg{margin-bottom:12px;}
+        .fg label{display:block;font-weight:500;font-size:0.8rem;margin-bottom:4px;color:var(--text2);}
+        .fg input,.fg textarea,.fg select{width:100%;padding:11px 14px;background:rgba(0,0,0,0.4);border:1px solid var(--glass-border);border-radius:var(--radius-sm);color:#fff;font-size:0.88rem;font-family:var(--font-body);transition:all 0.3s ease;}
+        .fg input:focus,.fg textarea:focus,.fg select:focus{outline:none;border-color:var(--accent-1);box-shadow:0 0 0 3px rgba(99,102,241,0.12);}
+        .fg select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235c5c6e' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;}
+        .success-msg{display:none;background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.2);color:#4ade80;padding:10px 14px;border-radius:var(--radius-sm);text-align:center;font-weight:500;font-size:0.84rem;margin-top:10px;}
 
-        /* GLASS CARDS */
-        .glass-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-            gap: 12px; margin-top: 20px;
-        }
-        .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--radius-md);
-            padding: 22px; transition: all 0.4s ease;
-            text-align: center;
-        }
-        .glass-card:hover {
-            border-color: var(--glass-border-strong);
-            transform: translateY(-5px);
-            box-shadow: 0 16px 48px rgba(0,0,0,0.5);
-        }
-        .glass-card h3 { font-family: var(--font-display); font-size: 1rem; margin-bottom: 4px; }
-        .glass-card p { font-size: 0.82rem; color: var(--text-secondary); }
+        .dash-panel{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:var(--radius-md);padding:22px;margin-bottom:14px;}
+        .dash-panel h3{font-size:0.95rem;margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+        .dash-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;}
+        .dash-stat{background:rgba(0,0,0,0.3);border-radius:var(--radius-sm);padding:14px;text-align:center;}
+        .dash-stat-val{font-family:var(--font-display);font-size:1.6rem;font-weight:700;background:linear-gradient(180deg,#fff,var(--accent-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+        .dash-stat-lbl{font-size:0.7rem;color:var(--text3);margin-top:2px;}
 
-        /* TABLES */
-        .tbl-glass {
-            width: 100%; border-collapse: collapse;
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--radius-md);
-            overflow: hidden; margin: 18px 0;
-        }
-        .tbl-glass th {
-            text-align: left; padding: 12px 16px;
-            font-size: 0.7rem; font-weight: 600;
-            letter-spacing: 1.5px; text-transform: uppercase;
-            color: var(--accent-2); border-bottom: 1px solid var(--glass-border);
-            background: rgba(255,255,255,0.02);
-        }
-        .tbl-glass td {
-            padding: 12px 16px;
-            border-bottom: 1px solid var(--glass-border);
-            font-size: 0.85rem; color: var(--text-secondary);
-        }
-        .tbl-glass tr:hover td { background: rgba(255,255,255,0.02); color: #fff; }
-        .tbl-glass .amt { color: #4ade80; font-weight: 600; }
-        .tbl-glass .pending { color: #fbbf24; font-weight: 600; }
+        .chapter-nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px;}
+        .chapter-nav button{padding:8px 14px;border-radius:50px;font-size:0.78rem;font-weight:500;cursor:pointer;border:1px solid var(--glass-border);background:var(--glass);color:var(--text2);transition:all 0.3s ease;font-family:var(--font-body);}
+        .chapter-nav button:hover{border-color:var(--glass-border-strong);color:#fff;}
+        .chapter-nav button.active{background:var(--accent-1);border-color:var(--accent-1);color:#fff;}
+        .chapter-content{background:var(--glass);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);border:1px solid var(--glass-border);border-radius:var(--radius-md);padding:28px;line-height:1.8;font-size:0.92rem;min-height:300px;color:var(--text2);}
+        .chapter-content h2{font-size:1.5rem;color:#fff;margin-bottom:14px;}
 
-        /* FORMS */
-        .form-glass {
-            background: var(--glass-bg);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 1px solid var(--glass-border-strong);
-            border-radius: var(--radius-lg);
-            padding: 28px; max-width: 500px;
-            margin: 18px auto;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.5);
-        }
-        .form-glass h3 { font-family: var(--font-display); text-align: center; margin-bottom: 16px; font-size: 1.2rem; }
-        .fg { margin-bottom: 12px; }
-        .fg label { display: block; font-weight: 500; font-size: 0.8rem; margin-bottom: 4px; color: var(--text-secondary); }
-        .fg input, .fg textarea, .fg select {
-            width: 100%; padding: 11px 14px;
-            background: rgba(0,0,0,0.4);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--radius-sm);
-            color: #fff; font-size: 0.88rem;
-            font-family: var(--font-body);
-            transition: all 0.3s ease;
-        }
-        .fg input:focus, .fg textarea:focus, .fg select:focus {
-            outline: none; border-color: var(--accent-1);
-            box-shadow: 0 0 0 3px rgba(99,102,241,0.12);
-        }
-        .fg select {
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='1
-                svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235c5c6e' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-            background-repeat: no-repeat; background-position: right 14px center;
-        }
-        .success-msg {
-            display: none;
-            background: rgba(74,222,128,0.08);
-            border: 1px solid rgba(74,222,128,0.2);
-            color: #4ade80; padding: 10px 14px;
-            border-radius: var(--radius-sm);
-            text-align: center; font-weight: 500;
-            font-size: 0.84rem; margin-top: 10px;
-        }
+        .footer{border-top:1px solid var(--glass-border);padding:28px 16px;text-align:center;position:relative;z-index:1;}
+        .footer a{color:var(--text3);text-decoration:none;margin:0 8px;font-size:0.78rem;cursor:pointer;transition:color 0.3s;}
+        .footer a:hover{color:#fff;}
+        .footer p{color:var(--text3);font-size:0.72rem;margin-top:10px;}
 
-        /* DASHBOARD */
-        .dash-panel {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--radius-md);
-            padding: 22px; margin-bottom: 14px;
+        ::-webkit-scrollbar{width:4px;}
+        ::-webkit-scrollbar-track{background:transparent;}
+        ::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.08);border-radius:2px;}
+
+        @media(max-width:768px){
+            .nav-links{display:none;}
+            .nav-mob{display:block;}
+            .hero h1{font-size:2rem;}
+            .price-new{font-size:3.5rem;}
+            .nav-links.show{display:flex;flex-direction:column;position:absolute;top:70px;left:0;right:0;background:rgba(14,14,24,0.98);padding:16px;border-radius:var(--radius-md);gap:4px;border:1px solid var(--glass-border);}
+            .chapter-content{padding:18px;}
+            .form-glass{padding:20px;}
         }
-        .dash-panel h3 { font-family: var(--font-display); font-size: 0.95rem; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
-        .dash-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; }
-        .dash-stat { background: rgba(0,0,0,0.3); border-radius: var(--radius-sm); padding: 14px; text-align: center; }
-        .dash-stat-val { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; background: linear-gradient(180deg, #fff, var(--accent-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .dash-stat-lbl { font-size: 0.7rem; color: var(--text-tertiary); margin-top: 2px; }
-
-        /* CHAPTER READER */
-        .chapter-nav { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 20px; }
-        .chapter-nav button { padding: 8px 14px; border-radius: 50px; font-size: 0.78rem; font-weight: 500; cursor: pointer; border: 1px solid var(--glass-border); background: var(--glass-bg); color: var(--text-secondary); transition: all 0.3s ease; font-family: var(--font-body); }
-        .chapter-nav button:hover { border-color: var(--glass-border-strong); color: #fff; }
-        .chapter-nav button.active { background: var(--accent-1); border-color: var(--accent-1); color: #fff; }
-        .chapter-content { background: var(--glass-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid var(--glass-border); border-radius: var(--radius-md); padding: 28px; line-height: 1.8; font-size: 0.92rem; min-height: 300px; color: var(--text-secondary); }
-        .chapter-content h2 { font-size: 1.5rem; color: #fff; margin-bottom: 14px; font-family: var(--font-display); }
-
-        /* FOOTER */
-        .footer {
-            border-top: 1px solid var(--glass-border);
-            padding: 28px 16px; text-align: center;
-            position: relative; z-index: 1;
-        }
-        .footer a { color: var(--text-tertiary); text-decoration: none; margin: 0 8px; font-size: 0.78rem; cursor: pointer; transition: color 0.3s; }
-        .footer a:hover { color: #fff; }
-        .footer p { color: var(--text-tertiary); font-size: 0.72rem; margin-top: 10px; }
-
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .nav-mob { display: block; }
-            .hero h1 { font-size: 2rem; }
-            .price-new { font-size: 3.5rem; }
-            .nav-links.show { display: flex; flex-direction: column; position: absolute; top: 70px; left: 0; right: 0; background: rgba(14,14,24,0.98); padding: 16px; border-radius: var(--radius-md); gap: 4px; border: 1px solid var(--glass-border); }
-        }
-
-        /* SCROLLBAR */
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 2px; }
     </style>
 </head>
 <body>
@@ -518,7 +178,7 @@
     <div class="particles" id="particles"></div>
 </div>
 
-<nav class="nav-island" id="nav">
+<nav class="nav" id="nav">
     <div class="nav-brand" onclick="goTo('home')">
         <div class="nav-brand-symbol">◆</div>
         <span class="nav-brand-text">Digital Sovereign</span>
@@ -527,20 +187,20 @@
         <button class="nav-link active" onclick="goTo('home')" id="nav-home">Home</button>
         <button class="nav-link" onclick="goTo('book')" id="nav-book">Book Reader</button>
         <button class="nav-link" onclick="goTo('reader')" id="nav-reader">Reader Portal</button>
-        <button class="nav-link" onclick="goTo('ambassador')" id="nav-ambassador">Ambassador Dashboard</button>
-        <button class="nav-link" onclick="goTo('admin')" id="nav-admin">Admin Panel</button>
+        <button class="nav-link" onclick="goTo('ambassador')" id="nav-ambassador">Ambassador</button>
+        <button class="nav-link" onclick="goTo('admin')" id="nav-admin">Admin</button>
     </div>
     <button class="nav-cta" onclick="goTo('home');setTimeout(()=>document.getElementById('pricing').scrollIntoView({behavior:'smooth'}),300);">Get Book — $1</button>
     <button class="nav-mob" onclick="document.getElementById('navLinks').classList.toggle('show')">☰</button>
 </nav>
 
-<!-- HOME -->
+<!-- ====== HOME ====== -->
 <div class="page active" id="page-home">
     <div class="hero">
         <div class="hero-glow"></div>
         <div class="hero-chip"><span class="hero-chip-dot"></span> 2026 Edition — Launch Promo</div>
         <h1><span class="line">Master <span class="grad">20 Skills.</span></span><span class="line">Command <span class="grad">AI.</span></span><span class="line">Build <span class="grad">Wealth.</span></span></h1>
-        <p class="hero-desc">An 800+ page transformation system. Live book reader. Grant tracker. Ambassador dashboard. Everything in one place.</p>
+        <p class="hero-desc">An 800+ page transformation system. Live book reader. Grant tracker. Ambassador dashboard. Everything in one platform.</p>
         <div class="hero-buttons">
             <button class="btn btn-primary" onclick="goTo('book')">📖 Read the Book</button>
             <button class="btn btn-glass" onclick="goTo('reader')">💰 Track Grants</button>
@@ -554,131 +214,270 @@
     </div>
     <div class="portal-grid">
         <div class="portal-card" onclick="goTo('book')"><span class="portal-card-icon">📖</span><h3>Book Reader</h3><p>Read all 20 chapters online. Published live from the Admin Panel.</p><span class="portal-arrow">→</span></div>
-        <div class="portal-card" onclick="goTo('reader')"><span class="portal-card-icon">💰</span><h3>Reader Portal</h3><p>Submit Practice Labs. Track Foundation Grants in real-time.</p><span class="portal-arrow">→</span></div>
-        <div class="portal-card" onclick="goTo('ambassador')"><span class="portal-card-icon">🤝</span><h3>Ambassador Dashboard</h3><p>Earnings, pending payments, referral links, full analytics.</p><span class="portal-arrow">→</span></div>
-        <div class="portal-card" onclick="goTo('admin')"><span class="portal-card-icon">⚙️</span><h3>Admin Panel</h3><p>Publish chapters. Manage grants. Review applications.</p><span class="portal-arrow">→</span></div>
+        <div class="portal-card" onclick="goTo('reader')"><span class="portal-card-icon">💰</span><h3>Reader Portal</h3><p>Submit Practice Labs. Track your Foundation Grants in real-time.</p><span class="portal-arrow">→</span></div>
+        <div class="portal-card" onclick="goTo('ambassador')"><span class="portal-card-icon">🤝</span><h3>Ambassador Dashboard</h3><p>Earnings, pending payments, referral links, and full analytics.</p><span class="portal-arrow">→</span></div>
+        <div class="portal-card" onclick="goTo('admin')"><span class="portal-card-icon">⚙️</span><h3>Admin Panel</h3><p>Publish chapters. Review grants. Manage ambassadors.</p><span class="portal-arrow">→</span></div>
     </div>
     <div class="sec sec-center" id="pricing">
         <div class="pricing-island">
             <span style="background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.2);padding:5px 12px;border-radius:50px;font-size:0.7rem;font-weight:600;color:var(--accent-2);letter-spacing:1px;">⚡ LIMITED LAUNCH PROMO</span><br><br>
-            <span class="price-old">$197</span>
-            <span class="price-new">$1</span>
+            <span class="price-old">$197</span><span class="price-new">$1</span>
             <span class="price-tag">Price Increases After First 500 Copies</span><br><br>
             <a href="https://gumroad.com/l/digitalsov" class="btn btn-primary" target="_blank" style="font-size:1rem;padding:16px 34px;">Get Instant Access →</a>
-            <p style="color:var(--text-tertiary);font-size:0.72rem;margin-top:8px;">Instant PDF + Full Platform Access. 30-Day Guarantee.</p>
+            <p style="color:var(--text3);font-size:0.72rem;margin-top:8px;">Instant PDF + Full Platform Access. 30-Day Guarantee.</p>
         </div>
     </div>
 </div>
 
-<!-- BOOK READER -->
-<div class="page" id="page-book"><div class="sec"><span class="sec-label">Live Reader</span><h2>📖 The Digital Sovereign</h2><p>Chapters published from the Admin Panel appear here instantly.</p><div class="chapter-nav" id="chapterNav"></div><div class="chapter-content" id="chapterContent"><h3>Loading chapters...</h3><p>Go to Admin Panel to publish your first chapter.</p></div><div style="text-align:center;margin-top:18px;"><button class="btn btn-primary" onclick="goTo('reader')">Submit Practice Lab for Grant →</button></div></div></div>
+<!-- ====== BOOK READER ====== -->
+<div class="page" id="page-book">
+    <div class="sec">
+        <span class="sec-label">Live Reader</span>
+        <h2>📖 The Digital Sovereign — Full Book</h2>
+        <p>Select a chapter. Published chapters appear instantly from the Admin Panel.</p>
+        <div class="chapter-nav" id="chapterNav"></div>
+        <div class="chapter-content" id="chapterContent">
+            <h3>Loading chapters...</h3>
+            <p>No chapters published yet. Use the Admin Panel to publish your first chapter.</p>
+        </div>
+        <div style="text-align:center;margin-top:18px;">
+            <button class="btn btn-primary" onclick="goTo('reader')">Submit Practice Lab for Grant →</button>
+        </div>
+    </div>
+</div>
 
-<!-- READER PORTAL -->
-<div class="page" id="page-reader"><div class="sec"><span class="sec-label">Reader Portal</span><h2>💰 Your Funding Dashboard</h2><p>Track grants. Submit Practice Labs. Get paid.</p><div class="dash-panel"><h3>📊 Grant Summary</h3><div class="dash-grid"><div class="dash-stat"><div class="dash-stat-val" id="gEarned">$0</div><div class="dash-stat-lbl">Total Earned</div></div><div class="dash-stat"><div class="dash-stat-val pending" id="gPending">$0</div><div class="dash-stat-lbl">Pending</div></div><div class="dash-stat"><div class="dash-stat-val" id="gApproved">$0</div><div class="dash-stat-lbl">Approved</div></div><div class="dash-stat"><div class="dash-stat-val" id="gPaid">$0</div><div class="dash-stat-lbl">Paid</div></div></div></div><div style="overflow-x:auto;"><table class="tbl-glass"><thead><tr><th>Chapter</th><th>Grant</th><th>Status</th><th>Date</th></tr></thead><tbody id="grantTableBody"><tr><td colspan="4" style="text-align:center;">No submissions yet.</td></tr></tbody></table></div><div class="form-glass"><h3>Submit Practice Lab</h3><form id="grantForm" onsubmit="submitGrant(event)"><div class="fg"><label>Full Name</label><input type="text" id="gName" required></div><div class="fg"><label>PayPal Email</label><input type="email" id="gEmail" required></div><div class="fg"><label>Chapter</label><select id="gChapter" required><option value="">Select...</option></select></div><div class="fg"><label>Practice Lab Results</label><textarea id="gProof" rows="3" required></textarea></div><div class="fg"><label>Gumroad Receipt ID</label><input type="text" id="gReceipt" required></div><button type="submit" class="btn btn-primary" style="width:100%;">Submit →</button><div class="success-msg" id="grantMsg">✅ Submitted! Grants processed Fridays.</div></form></div></div></div>
+<!-- ====== READER PORTAL ====== -->
+<div class="page" id="page-reader">
+    <div class="sec">
+        <span class="sec-label">Reader Portal</span>
+        <h2>💰 Your Funding Dashboard</h2>
+        <p>Track your Foundation Grants. Submit Practice Labs. Get paid every Friday.</p>
+        <div class="dash-panel">
+            <h3>📊 Grant Summary</h3>
+            <div class="dash-grid">
+                <div class="dash-stat"><div class="dash-stat-val" id="gEarned">$0</div><div class="dash-stat-lbl">Total Earned</div></div>
+                <div class="dash-stat"><div class="dash-stat-val pending" id="gPending">$0</div><div class="dash-stat-lbl">Pending</div></div>
+                <div class="dash-stat"><div class="dash-stat-val" id="gApproved">$0</div><div class="dash-stat-lbl">Approved</div></div>
+                <div class="dash-stat"><div class="dash-stat-val" id="gPaid">$0</div><div class="dash-stat-lbl">Paid Out</div></div>
+            </div>
+        </div>
+        <div class="tbl-wrap">
+            <table class="tbl-glass">
+                <thead><tr><th>Chapter</th><th>Grant</th><th>Status</th><th>Date</th></tr></thead>
+                <tbody id="grantTableBody"><tr><td colspan="4" style="text-align:center;">No submissions yet.</td></tr></tbody>
+            </table>
+        </div>
+        <div class="form-glass">
+            <h3>Submit Practice Lab for Grant</h3>
+            <form id="grantForm" onsubmit="submitGrant(event)">
+                <div class="fg"><label>Full Name *</label><input type="text" id="gName" required placeholder="Your full name"></div>
+                <div class="fg"><label>PayPal Email *</label><input type="email" id="gEmail" required placeholder="your@email.com"></div>
+                <div class="fg"><label>Chapter Completed *</label><select id="gChapter" required><option value="">Select chapter...</option></select></div>
+                <div class="fg"><label>Practice Lab Results *</label><textarea id="gProof" rows="3" required placeholder="Describe what you built or learned..."></textarea></div>
+                <div class="fg"><label>Gumroad Receipt ID *</label><input type="text" id="gReceipt" required placeholder="Your receipt number"></div>
+                <button type="submit" class="btn btn-primary btn-full">Submit for Grant →</button>
+                <div class="success-msg" id="grantMsg">✅ Submitted! Grants are processed every Friday via PayPal.</div>
+            </form>
+        </div>
+    </div>
+</div>
 
-<!-- AMBASSADOR DASHBOARD -->
-<div class="page" id="page-ambassador"><div class="sec"><span class="sec-label">Ambassador Dashboard</span><h2>🤝 Your Portal</h2><p>Earnings. Pending payments. Referral link. Performance.</p><div class="dash-panel"><h3>💵 Earnings Overview</h3><div class="dash-grid"><div class="dash-stat"><div class="dash-stat-val" id="aEarned">$0</div><div class="dash-stat-lbl">Total Earned</div></div><div class="dash-stat"><div class="dash-stat-val pending" id="aPending">$0</div><div class="dash-stat-lbl">Pending</div></div><div class="dash-stat"><div class="dash-stat-val" id="aAvailable">$0</div><div class="dash-stat-lbl">Available</div></div><div class="dash-stat"><div class="dash-stat-val" id="aPaid">$0</div><div class="dash-stat-lbl">Paid Out</div></div></div></div><div class="dash-panel"><h3>🔗 Referral Link</h3><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;"><code style="background:rgba(0,0,0,0.4);padding:10px 14px;border-radius:var(--radius-sm);font-family:monospace;font-size:0.82rem;word-break:break-all;">https://digitalsov.com/?ref=AMB12345</code><button class="btn btn-primary" style="padding:8px 16px;font-size:0.75rem;" onclick="navigator.clipboard.writeText('https://digitalsov.com/?ref=AMB12345');alert('Copied!')">📋 Copy</button></div></div><div style="overflow-x:auto;"><table class="tbl-glass"><thead><tr><th>Date</th><th>Type</th><th>Amount</th><th>Status</th></tr></thead><tbody id="ambTableBody"><tr><td colspan="4" style="text-align:center;">No transactions yet.</td></tr></tbody></table></div><div class="form-glass"><h3>Apply as Ambassador</h3><form id="ambForm" onsubmit="submitAmbassador(event)"><div class="fg"><label>Full Name</label><input type="text" id="aName" required></div><div class="fg"><label>Email</label><input type="email" id="aEmail" required></div><div class="fg"><label>Platform</label><select id="aPlatform" required><option value="">Select...</option><option>Telegram</option><option>X/Twitter</option><option>LinkedIn</option><option>Instagram</option><option>YouTube</option><option>Other</option></select></div><div class="fg"><label>Audience Size</label><input type="text" id="aAudience" required></div><button type="submit" class="btn btn-primary" style="width:100%;">Apply →</button><div class="success-msg" id="ambMsg">✅ Application stored! Reviewing shortly.</div></form></div></div></div>
+<!-- ====== AMBASSADOR DASHBOARD ====== -->
+<div class="page" id="page-ambassador">
+    <div class="sec">
+        <span class="sec-label">Ambassador Dashboard</span>
+        <h2>🤝 Your Ambassador Portal</h2>
+        <p>Track earnings. View pending payments. Copy your referral link. Monitor performance.</p>
+        <div class="dash-panel">
+            <h3>💵 Earnings Overview</h3>
+            <div class="dash-grid">
+                <div class="dash-stat"><div class="dash-stat-val" id="aEarned">$0</div><div class="dash-stat-lbl">Total Earned</div></div>
+                <div class="dash-stat"><div class="dash-stat-val pending" id="aPending">$0</div><div class="dash-stat-lbl">Pending</div></div>
+                <div class="dash-stat"><div class="dash-stat-val" id="aAvailable">$0</div><div class="dash-stat-lbl">Available</div></div>
+                <div class="dash-stat"><div class="dash-stat-val" id="aPaid">$0</div><div class="dash-stat-lbl">Paid Out</div></div>
+            </div>
+        </div>
+        <div class="dash-panel">
+            <h3>🔗 Your Referral Link</h3>
+            <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+                <code style="background:rgba(0,0,0,0.4);padding:10px 14px;border-radius:var(--radius-sm);font-family:monospace;font-size:0.82rem;word-break:break-all;">https://digitalsov.com/?ref=AMB12345</code>
+                <button class="btn btn-primary btn-sm" onclick="navigator.clipboard.writeText('https://digitalsov.com/?ref=AMB12345');alert('Copied!')">📋 Copy</button>
+            </div>
+        </div>
+        <div class="dash-panel">
+            <h3>📊 Performance Stats</h3>
+            <div class="dash-grid">
+                <div class="dash-stat"><div class="dash-stat-val" id="aClicks">0</div><div class="dash-stat-lbl">Total Clicks</div></div>
+                <div class="dash-stat"><div class="dash-stat-val" id="aConversions">0</div><div class="dash-stat-lbl">Conversions</div></div>
+                <div class="dash-stat"><div class="dash-stat-val" id="aRate">0%</div><div class="dash-stat-lbl">Conversion Rate</div></div>
+                <div class="dash-stat"><div class="dash-stat-val" id="aAvg">$0</div><div class="dash-stat-lbl">Avg Per Sale</div></div>
+            </div>
+        </div>
+        <div class="tbl-wrap">
+            <table class="tbl-glass">
+                <thead><tr><th>Date</th><th>Type</th><th>Amount</th><th>Status</th></tr></thead>
+                <tbody id="ambTableBody"><tr><td colspan="4" style="text-align:center;">No transactions yet.</td></tr></tbody>
+            </table>
+        </div>
+        <div class="form-glass">
+            <h3>Apply as an Ambassador</h3>
+            <form id="ambForm" onsubmit="submitAmbassador(event)">
+                <div class="fg"><label>Full Name *</label><input type="text" id="aName" required placeholder="Your full name"></div>
+                <div class="fg"><label>Email Address *</label><input type="email" id="aEmail" required placeholder="your@email.com"></div>
+                <div class="fg"><label>Telegram Username</label><input type="text" id="aTelegram" placeholder="@yourusername"></div>
+                <div class="fg"><label>Primary Platform *</label><select id="aPlatform" required><option value="">Select platform...</option><option>Telegram</option><option>X/Twitter</option><option>LinkedIn</option><option>Instagram</option><option>YouTube</option><option>TikTok</option><option>Blog/Website</option><option>Email List</option><option>Other</option></select></div>
+                <div class="fg"><label>Audience Size *</label><input type="text" id="aAudience" required placeholder="e.g., 5,000 followers"></div>
+                <div class="fg"><label>Why do you want to promote this book?</label><textarea id="aWhy" rows="3" placeholder="Tell us about your audience and why this resonates..."></textarea></div>
+                <button type="submit" class="btn btn-primary btn-full">Submit Application →</button>
+                <div class="success-msg" id="ambMsg">✅ Application received! We'll send your unique link within 24 hours.</div>
+            </form>
+        </div>
+    </div>
+</div>
 
-<!-- ADMIN PANEL -->
-<div class="page" id="page-admin"><div class="sec"><span class="sec-label">Admin Panel</span><h2>⚙️ Platform Management</h2><p>Publish chapters. View grants. Review ambassadors.</p><div class="dash-panel"><h3>📝 Publish Chapter</h3><div class="fg"><label>Chapter Number</label><input type="number" id="chNum" min="1" max="20" value="1"></div><div class="fg"><label>Title</label><input type="text" id="chTitle" placeholder="e.g., The New Economic Reality"></div><div class="fg"><label>Content (HTML allowed)</label><textarea id="chContent" rows="8" placeholder="<h2>Chapter Title</h2><p>Write your chapter here...</p>"></textarea></div><button class="btn btn-primary" onclick="publishChapter()" style="width:100%;">Publish Chapter →</button><div class="success-msg" id="pubMsg">✅ Published! Now live in Book Reader.</div></div><div class="dash-panel"><h3>📊 Stats</h3><div class="dash-grid"><div class="dash-stat"><div class="dash-stat-val" id="adminGrants">0</div><div class="dash-stat-lbl">Grant Submissions</div></div><div class="dash-stat"><div class="dash-stat-val" id="adminAmb">0</div><div class="dash-stat-lbl">Ambassador Applications</div></div><div class="dash-stat"><div class="dash-stat-val" id="adminCh">0</div><div class="dash-stat-lbl">Chapters Published</div></div></div></div></div></div>
+<!-- ====== ADMIN PANEL ====== -->
+<div class="page" id="page-admin">
+    <div class="sec">
+        <span class="sec-label">Admin Panel</span>
+        <h2>⚙️ Platform Management</h2>
+        <p>Publish chapters. View grant submissions. Review ambassador applications. Full platform control.</p>
+        <div class="dash-panel">
+            <h3>📝 Publish a Chapter</h3>
+            <p style="color:var(--text2);font-size:0.82rem;margin-bottom:12px;">Type chapter content below. It publishes instantly to the Book Reader.</p>
+            <div class="fg"><label>Chapter Number</label><input type="number" id="chNum" min="1" max="20" value="1"></div>
+            <div class="fg"><label>Chapter Title</label><input type="text" id="chTitle" placeholder="e.g., The New Economic Reality"></div>
+            <div class="fg"><label>Chapter Content (HTML allowed)</label><textarea id="chContent" rows="10" placeholder="<h2>Chapter Title</h2><p>Write your chapter content here. You can use HTML for formatting.</p><p><strong>Key Concepts:</strong> List the main ideas.</p><p><em>Practice Lab:</em> Describe the exercise.</p>"></textarea></div>
+            <button class="btn btn-primary btn-full" onclick="publishChapter()">Publish Chapter →</button>
+            <div class="success-msg" id="pubMsg">✅ Chapter published! Now live in the Book Reader.</div>
+        </div>
+        <div class="dash-panel">
+            <h3>📊 Platform Overview</h3>
+            <div class="dash-grid">
+                <div class="dash-stat"><div class="dash-stat-val" id="adminGrants">0</div><div class="dash-stat-lbl">Grant Submissions</div></div>
+                <div class="dash-stat"><div class="dash-stat-val" id="adminAmb">0</div><div class="dash-stat-lbl">Ambassador Applications</div></div>
+                <div class="dash-stat"><div class="dash-stat-val" id="adminCh">0</div><div class="dash-stat-lbl">Chapters Published</div></div>
+            </div>
+        </div>
+        <div class="dash-panel">
+            <h3>💰 Recent Grant Submissions</h3>
+            <div class="tbl-wrap"><table class="tbl-glass"><thead><tr><th>Name</th><th>Chapter</th><th>Receipt</th><th>Status</th></tr></thead><tbody id="adminGrantTable"><tr><td colspan="4" style="text-align:center;">No submissions yet.</td></tr></tbody></table></div>
+        </div>
+        <div class="dash-panel">
+            <h3>🤝 Ambassador Applications</h3>
+            <div class="tbl-wrap"><table class="tbl-glass"><thead><tr><th>Name</th><th>Platform</th><th>Audience</th><th>Status</th></tr></thead><tbody id="adminAmbTable"><tr><td colspan="4" style="text-align:center;">No applications yet.</td></tr></tbody></table></div>
+        </div>
+    </div>
+</div>
 
-<div class="footer"><div><a onclick="goTo('home')">Home</a><a onclick="goTo('book')">Book Reader</a><a onclick="goTo('reader')">Reader Portal</a><a onclick="goTo('ambassador')">Ambassador Dashboard</a><a onclick="goTo('admin')">Admin Panel</a></div><p>© 2026 The Digital Sovereign Foundation. All rights reserved.</p></div>
+<div class="footer">
+    <div>
+        <a onclick="goTo('home')">Home</a>
+        <a onclick="goTo('book')">Book Reader</a>
+        <a onclick="goTo('reader')">Reader Portal</a>
+        <a onclick="goTo('ambassador')">Ambassador Dashboard</a>
+        <a onclick="goTo('admin')">Admin Panel</a>
+    </div>
+    <p>© 2026 The Digital Sovereign Foundation. All rights reserved.</p>
+</div>
 
 <script>
-    // CURSOR
-    const dot=document.getElementById('cursorDot'), ring=document.getElementById('cursorRing');
-    document.addEventListener('mousemove',e=>{dot.style.left=e.clientX+'px';dot.style.top=e.clientY+'px';setTimeout(()=>{ring.style.left=e.clientX-24+'px';ring.style.top=e.clientY-24+'px';},50);});
-    document.querySelectorAll('a,button,.portal-card,.nav-link').forEach(el=>{el.addEventListener('mouseenter',()=>ring.classList.add('hover'));el.addEventListener('mouseleave',()=>ring.classList.remove('hover'));});
+// CURSOR
+const dot=document.getElementById('cursorDot'),ring=document.getElementById('cursorRing');
+document.addEventListener('mousemove',e=>{dot.style.left=e.clientX+'px';dot.style.top=e.clientY+'px';setTimeout(()=>{ring.style.left=e.clientX-24+'px';ring.style.top=e.clientY-24+'px';},50);});
+document.querySelectorAll('a,button,.portal-card,.nav-link').forEach(el=>{el.addEventListener('mouseenter',()=>ring.classList.add('hover'));el.addEventListener('mouseleave',()=>ring.classList.remove('hover'));});
 
-    // PARTICLES
-    const pc=document.getElementById('particles');
-    for(let i=0;i<60;i++){const p=document.createElement('div');p.className='particle';p.style.left=Math.random()*100+'%';p.style.top=Math.random()*100+'%';p.style.animationDelay=Math.random()*10+'s';p.style.animationDuration=(8+Math.random()*16)+'s';pc.appendChild(p);}
+// PARTICLES
+const pc=document.getElementById('particles');
+for(let i=0;i<60;i++){const p=document.createElement('div');p.className='particle';p.style.left=Math.random()*100+'%';p.style.top=Math.random()*100+'%';p.style.animationDelay=Math.random()*10+'s';p.style.animationDuration=(8+Math.random()*16)+'s';pc.appendChild(p);}
 
-    // NAV SCROLL
-    window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',window.scrollY>30));
+// NAV
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',window.scrollY>30));
 
-    // PAGES
-    function goTo(name){
-        document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-        const t=document.getElementById('page-'+name);if(t)t.classList.add('active');
-        document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
-        const n=document.getElementById('nav-'+name);if(n)n.classList.add('active');
-        window.scrollTo({top:0,behavior:'smooth'});
-        if(name==='book'){buildChapterNav();loadChapter(1);}
-        if(name==='reader'){loadGrantTable();populateChSelect();}
-        if(name==='ambassador'){loadAmbTable();}
-        if(name==='admin'){loadAdmin();}
-    }
+// PAGE SWITCHING
+function goTo(name){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    const t=document.getElementById('page-'+name);if(t)t.classList.add('active');
+    document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
+    const n=document.getElementById('nav-'+name);if(n)n.classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+    if(name==='book'){buildChapterNav();loadChapter(1);}
+    if(name==='reader'){loadGrantTable();populateChSelect();}
+    if(name==='ambassador'){loadAmbTable();}
+    if(name==='admin'){loadAdmin();}
+}
 
-    // STORAGE HELPERS
-    function get(k){const d=localStorage.getItem('ds_'+k);return d?JSON.parse(d):k==='chapters'?{}:[];}
-    function set(k,v){localStorage.setItem('ds_'+k,JSON.stringify(v));}
+// STORAGE HELPERS
+function get(k){const d=localStorage.getItem('ds_'+k);return d?JSON.parse(d):k==='chapters'?{}:[];}
+function set(k,v){localStorage.setItem('ds_'+k,JSON.stringify(v));}
 
-    // CHAPTERS
-    function publishChapter(){
-        const num=document.getElementById('chNum').value,title=document.getElementById('chTitle').value,content=document.getElementById('chContent').value;
-        if(!title||!content)return alert('Fill all fields');
-        const ch=get('chapters');ch[num]={title,content};set('chapters',ch);
-        document.getElementById('pubMsg').style.display='block';
-        setTimeout(()=>document.getElementById('pubMsg').style.display='none',3000);
-        document.getElementById('chTitle').value='';document.getElementById('chContent').value='';
-        loadAdmin();
-    }
-    function buildChapterNav(){
-        const ch=get('chapters'),nav=document.getElementById('chapterNav');nav.innerHTML='';
-        for(let i=1;i<=20;i++){const b=document.createElement('button');b.textContent='Ch '+i;if(ch[i])b.style.borderColor='#4ade80';b.onclick=()=>loadChapter(i);nav.appendChild(b);}
-    }
-    function loadChapter(num){
-        const ch=get('chapters'),c=ch[num];
-        document.querySelectorAll('.chapter-nav button').forEach((b,i)=>b.classList.toggle('active',i===num-1));
-        document.getElementById('chapterContent').innerHTML=c?c.content:'<h2>Chapter '+num+'</h2><p>Coming soon. <a href="https://gumroad.com/l/digitalsov" target="_blank" style="color:var(--accent-2);">Get the complete book →</a></p>';
-    }
+// CHAPTERS
+function publishChapter(){
+    const num=document.getElementById('chNum').value,title=document.getElementById('chTitle').value,content=document.getElementById('chContent').value;
+    if(!title||!content)return alert('Please fill in the title and content.');
+    const ch=get('chapters');ch[num]={title,content,date:new Date().toISOString()};set('chapters',ch);
+    document.getElementById('pubMsg').style.display='block';
+    setTimeout(()=>document.getElementById('pubMsg').style.display='none',3000);
+    document.getElementById('chTitle').value='';document.getElementById('chContent').value='';
+    buildChapterNav();loadChapter(parseInt(num));loadAdmin();
+}
+function buildChapterNav(){
+    const ch=get('chapters'),nav=document.getElementById('chapterNav');nav.innerHTML='';
+    for(let i=1;i<=20;i++){const b=document.createElement('button');b.textContent='Ch '+i;if(ch[i])b.style.borderColor='#4ade80';b.onclick=()=>loadChapter(i);nav.appendChild(b);}
+}
+function loadChapter(num){
+    const ch=get('chapters'),c=ch[num];
+    document.querySelectorAll('.chapter-nav button').forEach((b,i)=>b.classList.toggle('active',i===num-1));
+    document.getElementById('chapterContent').innerHTML=c?c.content:'<h2>Chapter '+num+'</h2><p>This chapter has not been published yet. The author will publish it soon.</p><p style="margin-top:12px;"><a href="https://gumroad.com/l/digitalsov" target="_blank" style="color:var(--accent-2);">Get the complete book with all 20 chapters →</a></p>';
+}
 
-    // GRANTS
-    function submitGrant(e){
-        e.preventDefault();
-        const grants=get('grants');
-        grants.push({name:document.getElementById('gName').value,email:document.getElementById('gEmail').value,chapter:document.getElementById('gChapter').value,proof:document.getElementById('gProof').value,receipt:document.getElementById('gReceipt').value,status:'⏳ Pending',date:new Date().toLocaleDateString()});
-        set('grants',grants);
-        document.getElementById('grantMsg').style.display='block';e.target.reset();
-        setTimeout(()=>document.getElementById('grantMsg').style.display='none',4000);
-        loadGrantTable();
-    }
-    function loadGrantTable(){
-        const grants=get('grants'),tb=document.getElementById('grantTableBody');
-        tb.innerHTML=grants.length?grants.map(g=>`<tr><td>Ch ${g.chapter} - ${g.name}</td><td class="amt">Grant</td><td>${g.status}</td><td>${g.date}</td></tr>`).join(''):'<tr><td colspan="4" style="text-align:center;">No submissions.</td></tr>';
-        const p=grants.filter(g=>g.status.includes('Pending')).length,a=grants.filter(g=>g.status.includes('Approved')).length;
-        document.getElementById('gPending').textContent=p;document.getElementById('gApproved').textContent=a;document.getElementById('gPaid').textContent=a;document.getElementById('gEarned').textContent=p+a;
-    }
-    function populateChSelect(){const s=document.getElementById('gChapter');s.innerHTML='<option value="">Select...</option>';for(let i=1;i<=20;i++)s.innerHTML+=`<option value="${i}">Chapter ${i}</option>`;}
+// GRANTS
+function submitGrant(e){
+    e.preventDefault();
+    const grants=get('grants');
+    grants.push({name:document.getElementById('gName').value,email:document.getElementById('gEmail').value,chapter:document.getElementById('gChapter').value,proof:document.getElementById('gProof').value,receipt:document.getElementById('gReceipt').value,status:'⏳ Pending',date:new Date().toLocaleDateString()});
+    set('grants',grants);
+    document.getElementById('grantMsg').style.display='block';e.target.reset();
+    setTimeout(()=>document.getElementById('grantMsg').style.display='none',4000);
+    loadGrantTable();
+}
+function loadGrantTable(){
+    const grants=get('grants'),tb=document.getElementById('grantTableBody');
+    tb.innerHTML=grants.length?grants.map(g=>`<tr><td>Ch ${g.chapter} — ${g.name}</td><td class="amt">Grant</td><td>${g.status}</td><td>${g.date}</td></tr>`).join(''):'<tr><td colspan="4" style="text-align:center;">No submissions yet.</td></tr>';
+    const p=grants.filter(g=>g.status.includes('Pending')).length,a=grants.filter(g=>g.status.includes('Approved')).length;
+    document.getElementById('gPending').textContent=p;document.getElementById('gApproved').textContent=a;document.getElementById('gPaid').textContent=a;document.getElementById('gEarned').textContent=p+a;
+}
+function populateChSelect(){const s=document.getElementById('gChapter');s.innerHTML='<option value="">Select chapter...</option>';for(let i=1;i<=20;i++)s.innerHTML+=`<option value="${i}">Chapter ${i}</option>`;}
 
-    // AMBASSADORS
-    function submitAmbassador(e){
-        e.preventDefault();
-        const amb=get('ambassadors');
-        amb.push({name:document.getElementById('aName').value,email:document.getElementById('aEmail').value,platform:document.getElementById('aPlatform').value,audience:document.getElementById('aAudience').value,date:new Date().toLocaleDateString()});
-        set('ambassadors',amb);
-        document.getElementById('ambMsg')
-        .style.display='block';e.target.reset();
-        setTimeout(()=>document.getElementById('ambMsg').style.display='none',4000);
-        loadAmbTable();
-    }
-    function loadAmbTable(){
-        const amb=get('ambassadors'),tb=document.getElementById('ambTableBody');
-        tb.innerHTML=amb.length?amb.map(a=>`<tr><td>${a.date}</td><td>Application</td><td>—</td><td>⏳ Pending</td></tr>`).join(''):'<tr><td colspan="4" style="text-align:center;">No transactions.</td></tr>';
-        document.getElementById('aPending').textContent=amb.length;
-    }
+// AMBASSADORS
+function submitAmbassador(e){
+    e.preventDefault();
+    const amb=get('ambassadors');
+    amb.push({name:document.getElementById('aName').value,email:document.getElementById('aEmail').value,telegram:document.getElementById('aTelegram').value,platform:document.getElementById('aPlatform').value,audience:document.getElementById('aAudience').value,why:document.getElementById('aWhy').value,date:new Date().toLocaleDateString(),status:'⏳ Pending'});
+    set('ambassadors',amb);
+    document.getElementById('ambMsg').style.display='block';e.target.reset();
+    setTimeout(()=>document.getElementById('ambMsg').style.display='none',4000);
+    loadAmbTable();
+}
+function loadAmbTable(){
+    const amb=get('ambassadors'),tb=document.getElementById('ambTableBody');
+    tb.innerHTML=amb.length?amb.map(a=>`<tr><td>${a.date}</td><td>Application</td><td>—</td><td>${a.status}</td></tr>`).join(''):'<tr><td colspan="4" style="text-align:center;">No transactions yet.</td></tr>';
+    document.getElementById('aPending').textContent=amb.length;document.getElementById('aConversions').textContent=amb.length;
+}
 
-    // ADMIN
-    function loadAdmin(){
-        const grants=get('grants'),amb=get('ambassadors'),ch=get('chapters');
-        document.getElementById('adminGrants').textContent=grants.length;
-        document.getElementById('adminAmb').textContent=amb.length;
-        document.getElementById('adminCh').textContent=Object.keys(ch).length;
-    }
+// ADMIN
+function loadAdmin(){
+    const grants=get('grants'),amb=get('ambassadors'),ch=get('chapters');
+    document.getElementById('adminGrants').textContent=grants.length;
+    document.getElementById('adminAmb').textContent=amb.length;
+    document.getElementById('adminCh').textContent=Object.keys(ch).length;
+    const gt=document.getElementById('adminGrantTable');
+    gt.innerHTML=grants.length?grants.map(g=>`<tr><td>${g.name}</td><td>Ch ${g.chapter}</td><td>${g.receipt}</td><td>${g.status}</td></tr>`).join(''):'<tr><td colspan="4" style="text-align:center;">No submissions yet.</td></tr>';
+    const at=document.getElementById('adminAmbTable');
+    at.innerHTML=amb.length?amb.map(a=>`<tr><td>${a.name}</td><td>${a.platform}</td><td>${a.audience}</td><td>${a.status}</td></tr>`).join(''):'<tr><td colspan="4" style="text-align:center;">No applications yet.</td></tr>';
+}
 
-    // INIT
-    buildChapterNav();loadChapter(1);populateChSelect();
+// INIT
+buildChapterNav();loadChapter(1);populateChSelect();
 </script>
 </body>
 </html>
